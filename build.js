@@ -17,11 +17,11 @@ var App = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
         _this.state = {
-            numberUser: 0,
+            numberActiveUser: 0,
             activeUser: [],
-            user: ['gaearon', 'acdlite', 'yyx990803', 'unclebob', 'martinfowler'],
+            users: ['gaearon', 'acdlite', 'yyx990803', 'unclebob', 'martinfowler'],
             loading: false,
-            imageload: true
+            imageShow: true
         };
         return _this;
     }
@@ -31,12 +31,12 @@ var App = function (_React$Component) {
         value: function getResponse(userx) {
             var _this2 = this;
 
-            this.setState({ imageload: false, loading: true });
+            this.setState({ imageShow: false, loading: true });
             var url = 'https://api.github.com/users/' + userx;
             fetch(url).then(function (response) {
                 return response.json();
             }).then(function (responseJson) {
-                return _this2.setState({ activeUser: responseJson, loading: false, imageload: true });
+                return _this2.setState({ activeUser: responseJson, loading: false, imageShow: true });
             });
         }
     }, {
@@ -45,24 +45,24 @@ var App = function (_React$Component) {
             this.getResponse('gaearon');
         }
     }, {
-        key: 'previousButton',
-        value: function previousButton() {
-            var prevIndex = this.state.numberUser - 1;
+        key: 'changeImageLeft',
+        value: function changeImageLeft() {
+            var prevIndex = this.state.numberActiveUser - 1;
             if (prevIndex < 0) {
                 prevIndex = 4;
             }
-            this.setState({ numberUser: prevIndex });
-            this.getResponse(this.state.user[prevIndex]);
+            this.setState({ numberActiveUser: prevIndex });
+            this.getResponse(this.state.users[prevIndex]);
         }
     }, {
-        key: 'nextButton',
-        value: function nextButton() {
-            var nextIndex = this.state.numberUser + 1;
+        key: 'changeImageRight',
+        value: function changeImageRight() {
+            var nextIndex = this.state.numberActiveUser + 1;
             if (nextIndex > 4) {
                 nextIndex = 0;
             }
-            this.setState({ numberUser: nextIndex });
-            this.getResponse(this.state.user[nextIndex]);
+            this.setState({ numberActiveUser: nextIndex });
+            this.getResponse(this.state.users[nextIndex]);
         }
     }, {
         key: 'render',
@@ -72,27 +72,25 @@ var App = function (_React$Component) {
             return React.createElement(
                 'div',
                 null,
-                console.log("active state: " + this.state.numberUser),
-                React.createElement(User, { user: this.state.activeUser, loading: this.state.loading, imageload: this.state.imageload }),
+                React.createElement(User, { user: this.state.activeUser, loading: this.state.loading, imageShow: this.state.imageShow }),
                 React.createElement(
                     'div',
                     { className: 'buttons' },
                     React.createElement(
                         'button',
                         { className: 'buttonPrevious', onClick: function onClick() {
-                                _this3.previousButton();
+                                _this3.changeImageLeft();
                             } },
                         React.createElement('i', { className: 'left' }),
-                        '  previous '
+                        ' previous'
                     ),
                     React.createElement(
                         'button',
                         { className: 'buttonNext', onClick: function onClick() {
-                                _this3.nextButton();
+                                _this3.changeImageRight();
                             } },
-                        ' next  ',
-                        React.createElement('i', { className: 'right' }),
-                        ' '
+                        'next ',
+                        React.createElement('i', { className: 'right' })
                     )
                 )
             );
@@ -122,7 +120,7 @@ var User = function (_React$Component2) {
                     { className: 'loadingText', style: { display: this.props.loading ? 'block' : 'none' } },
                     'Loading...'
                 ),
-                React.createElement('img', { style: { display: this.props.imageload ? 'block' : 'none' }, src: this.props.user.avatar_url })
+                React.createElement('img', { style: { display: this.props.imageShow ? 'block' : 'none' }, src: this.props.user.avatar_url })
             );
         }
     }]);
