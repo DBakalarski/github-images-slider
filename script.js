@@ -10,7 +10,7 @@ class App extends React.Component {
         };
     }
 
-    getResponse(userx) {
+    changeImage(userx) {
         this.setState({imageShow:false, loading: true})
         const url = `https://api.github.com/users/${userx}`;
         fetch(url)
@@ -18,7 +18,7 @@ class App extends React.Component {
         .then(responseJson => this.setState({activeUser: responseJson, loading: false, imageShow:true}))
     }
     componentDidMount() {
-        this.getResponse('gaearon')
+        this.changeImage('gaearon')
     }
     changeImageLeft(){
         let prevIndex = this.state.numberActiveUser - 1;
@@ -26,7 +26,7 @@ class App extends React.Component {
           prevIndex = 4;
         }
         this.setState({ numberActiveUser: prevIndex });
-        this.getResponse(this.state.users[prevIndex]);
+        this.changeImage(this.state.users[prevIndex]);
     }
     changeImageRight() {
         let nextIndex = this.state.numberActiveUser + 1;
@@ -34,7 +34,7 @@ class App extends React.Component {
           nextIndex = 0;
         }
         this.setState({ numberActiveUser: nextIndex });
-        this.getResponse(this.state.users[nextIndex]);
+        this.changeImage(this.state.users[nextIndex]);
     }
     render() {
         return (

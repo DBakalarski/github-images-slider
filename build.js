@@ -27,8 +27,8 @@ var App = function (_React$Component) {
     }
 
     _createClass(App, [{
-        key: 'getResponse',
-        value: function getResponse(userx) {
+        key: 'changeImage',
+        value: function changeImage(userx) {
             var _this2 = this;
 
             this.setState({ imageShow: false, loading: true });
@@ -42,7 +42,7 @@ var App = function (_React$Component) {
     }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
-            this.getResponse('gaearon');
+            this.changeImage('gaearon');
         }
     }, {
         key: 'changeImageLeft',
@@ -52,7 +52,7 @@ var App = function (_React$Component) {
                 prevIndex = 4;
             }
             this.setState({ numberActiveUser: prevIndex });
-            this.getResponse(this.state.users[prevIndex]);
+            this.changeImage(this.state.users[prevIndex]);
         }
     }, {
         key: 'changeImageRight',
@@ -62,7 +62,7 @@ var App = function (_React$Component) {
                 nextIndex = 0;
             }
             this.setState({ numberActiveUser: nextIndex });
-            this.getResponse(this.state.users[nextIndex]);
+            this.changeImage(this.state.users[nextIndex]);
         }
     }, {
         key: 'render',
