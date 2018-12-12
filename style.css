@@ -6,7 +6,6 @@ body {
 	background: -webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);  /* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-
 #root {
 	max-width: 1200px;
 	display: flex;
@@ -43,17 +42,17 @@ button:hover {
 }
 /*** arrow in butons ***/
 i {
-  border: solid black;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
+	border: solid black;
+	border-width: 0 3px 3px 0;
+	display: inline-block;
+	padding: 3px;
 }
 .right {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
 }
 
 .left {
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
+	transform: rotate(135deg);
+	-webkit-transform: rotate(135deg);
 }
